@@ -1,0 +1,4882 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* 기본 브랜드 컬러 */
+    --primary-color: #D4A574;
+    --primary-light: #E8C9A1;
+    --primary-dark: #B8905E;
+    --secondary-color: #8B4513;
+    --secondary-light: #A0602F;
+    --dark-color: #2C1810;
+    --light-color: #F5F5F5;
+
+    /* 액센트 컬러 팔레트 */
+    --accent-orange: #FF8C42;
+    --accent-orange-light: #FFB380;
+    --accent-blue: #4A90E2;
+    --accent-blue-light: #7EB3F5;
+    --accent-green: #5CB85C;
+    --accent-green-light: #8FD68F;
+    --accent-purple: #9B59B6;
+    --accent-purple-light: #B97FD1;
+    --accent-teal: #17A2B8;
+    --accent-teal-light: #5DCDDF;
+    --accent-red: #E74C3C;
+    --accent-yellow: #F39C12;
+
+    /* 그라디언트 색상 */
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    --gradient-5: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    --gradient-6: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+    --gradient-warm: linear-gradient(135deg, #FFB88C 0%, #DE6262 100%);
+    --gradient-cool: linear-gradient(135deg, #A8EDEA 0%, #FED6E3 100%);
+    --gradient-sunset: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+    --gradient-ocean: linear-gradient(135deg, #2E3192 0%, #1BFFFF 100%);
+
+    /* 배경 색상 */
+    --bg-light-blue: #E3F2FD;
+    --bg-light-green: #E8F5E9;
+    --bg-light-purple: #F3E5F5;
+    --bg-light-orange: #FFF3E0;
+    --bg-light-teal: #E0F2F1;
+    --bg-light-pink: #FCE4EC;
+
+    /* 텍스트 색상 */
+    --text-dark: #2C3E50;
+    --text-light: #7F8C8D;
+    --text-white: #FFFFFF;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 네비게이션 */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(44, 24, 16, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    letter-spacing: 2px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-color);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+/* Active 메뉴 스타일 */
+.nav-menu a.active {
+    color: white;
+    background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-purple) 100%);
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+}
+
+.nav-menu a.active::after {
+    display: none;
+}
+
+.nav-menu a.active:hover {
+    color: white;
+    background: linear-gradient(135deg, var(--accent-orange-light) 0%, var(--accent-purple-light) 100%);
+    box-shadow: 0 6px 20px rgba(255, 140, 66, 0.6);
+}
+
+/* 드롭다운 메뉴 */
+.has-dropdown {
+    position: relative;
+}
+
+/* 드롭다운이 있는 메뉴에 역삼각형 추가 */
+.has-dropdown > a::after {
+    content: '▼';
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+    transition: transform 0.3s;
+}
+
+.has-dropdown:hover > a::after {
+    transform: rotate(180deg);
+}
+
+/* Active 상태의 드롭다운 메뉴는 역삼각형 유지 */
+.has-dropdown > a.active::after {
+    display: inline-block !important;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(44, 24, 16, 0.98);
+    backdrop-filter: blur(10px);
+    min-width: 250px;
+    padding: 0.5rem 0;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    list-style: none;
+    border-top: 2px solid var(--primary-color);
+}
+
+.dropdown-menu li {
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 0.9rem 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.dropdown-menu a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--accent-orange);
+    transition: width 0.3s;
+}
+
+.dropdown-menu a::after {
+    display: none;
+}
+
+.dropdown-menu a:hover {
+    background: linear-gradient(90deg, rgba(212, 165, 116, 0.2) 0%, transparent 100%);
+    padding-left: 2rem;
+    color: white;
+}
+
+.dropdown-menu a:hover::before {
+    width: 4px;
+}
+
+/* 드롭다운 메뉴의 active 상태 */
+.dropdown-menu a.active {
+    background: linear-gradient(90deg, var(--accent-orange) 0%, var(--accent-purple) 100%);
+    color: white;
+    font-weight: 600;
+    padding-left: 2rem;
+    border-left: 4px solid var(--accent-orange-light);
+}
+
+.dropdown-menu a.active::before {
+    width: 4px;
+    background: var(--accent-orange-light);
+}
+
+.has-dropdown:hover .dropdown-menu {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+}
+
+/* 사업 전략 페이지에서 드롭다운 항상 표시 */
+.has-dropdown.keep-open .dropdown-menu {
+    display: block !important;
+}
+
+.has-dropdown.keep-open > a::after {
+    transform: rotate(180deg);
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: 0.3s;
+}
+
+/* 히어로 섹션 */
+.hero {
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(78, 205, 196, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 230, 109, 0.3) 0%, transparent 50%);
+    animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,300 Q300,100 600,300 T1200,300 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+    background-size: cover;
+    opacity: 0.4;
+    animation: wave 20s linear infinite;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    max-width: 900px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
+    letter-spacing: 3px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease 0.2s both;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s ease 0.4s both;
+}
+
+.stat-item h3 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1.2rem 3.5rem;
+    background: linear-gradient(135deg, var(--accent-orange) 0%, var(--accent-red) 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: fadeInUp 1s ease 0.6s both;
+    box-shadow: 0 8px 30px rgba(255, 140, 66, 0.4);
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 50px rgba(255, 140, 66, 0.6);
+}
+
+/* 섹션 공통 스타일 */
+.section {
+    padding: 6rem 0;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3.5rem;
+    color: var(--dark-color);
+    position: relative;
+    padding-bottom: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-orange));
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 브랜드 소개 */
+.about {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    position: relative;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(212,165,116,0.1)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.about-card {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid transparent;
+}
+
+.about-card:nth-child(1) {
+    border-top-color: var(--accent-blue);
+}
+
+.about-card:nth-child(2) {
+    border-top-color: var(--accent-green);
+}
+
+.about-card:nth-child(3) {
+    border-top-color: var(--accent-purple);
+}
+
+.about-card:nth-child(4) {
+    border-top-color: var(--accent-orange);
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, rgba(155, 89, 182, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.about-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.about-card:hover::before {
+    opacity: 1;
+}
+
+.about-card .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.about-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.about-card p {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* 사업 전략 */
+.strategy {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--bg-light-purple);
+    position: relative;
+    overflow: hidden;
+}
+
+.strategy::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(155, 89, 182, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.strategy-content {
+    display: grid;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.strategy-item {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    border-left: 5px solid transparent;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.strategy-item:nth-child(odd) {
+    border-left-color: var(--accent-purple);
+}
+
+.strategy-item:nth-child(even) {
+    border-left-color: var(--accent-blue);
+}
+
+.strategy-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.strategy-number {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-light));
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 70px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+.strategy-item:nth-child(even) .strategy-number {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-light));
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.strategy-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.strategy-item p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.strategy-item ul {
+    list-style: none;
+    display: grid;
+    gap: 0.8rem;
+}
+
+.strategy-item ul li {
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.strategy-item ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 시장 분석 */
+.market {
+    background: var(--light-color);
+}
+
+.market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.market-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.market-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.market-stat {
+    text-align: center;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-teal) 100%);
+    border-radius: 15px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.market-stat:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(74, 144, 226, 0.4);
+}
+
+.big-number {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.market-label {
+    display: block;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.competitors {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.competitor-item {
+    padding: 1rem;
+    background: #f8f8f8;
+    border-radius: 8px;
+}
+
+.competitor-item strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.competitor-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.advantage {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.advantage strong {
+    display: block;
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.advantage p {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.growth-list {
+    list-style: none;
+}
+
+.growth-list li {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    background: #f8f8f8;
+    border-radius: 8px;
+    color: var(--text-dark);
+}
+
+/* 비즈니스 모델 */
+.business {
+    background: white;
+}
+
+.business-content {
+    display: grid;
+    gap: 3rem;
+}
+
+.business-model h3,
+.platform-strategy h3,
+.delivery-system h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+}
+
+.revenue-streams {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+}
+
+.revenue-item {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.revenue-item:nth-child(1) {
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.1) 0%, rgba(255, 140, 66, 0.05) 100%);
+}
+
+.revenue-item:nth-child(2) {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%);
+}
+
+.revenue-item:nth-child(3) {
+    background: linear-gradient(135deg, rgba(92, 184, 92, 0.1) 0%, rgba(92, 184, 92, 0.05) 100%);
+}
+
+.revenue-item:nth-child(4) {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(155, 89, 182, 0.05) 100%);
+}
+
+.revenue-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.revenue-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue), var(--accent-green), var(--accent-purple));
+}
+
+.revenue-item:nth-child(1)::before {
+    background: var(--accent-orange);
+}
+
+.revenue-item:nth-child(2)::before {
+    background: var(--accent-blue);
+}
+
+.revenue-item:nth-child(3)::before {
+    background: var(--accent-green);
+}
+
+.revenue-item:nth-child(4)::before {
+    background: var(--accent-purple);
+}
+
+.revenue-item h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.revenue-item p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.percentage {
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.platform-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: #f8f8f8;
+    border-radius: 15px;
+}
+
+.platform-layer {
+    width: 100%;
+    max-width: 500px;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.platform-layer strong {
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.platform-layer p {
+    color: var(--text-light);
+}
+
+.arrow {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.delivery-system ul {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+}
+
+.delivery-system ul li {
+    padding: 1.2rem;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.delivery-system ul li strong {
+    color: var(--dark-color);
+    margin-right: 0.5rem;
+}
+
+/* 투자 제안 */
+.investment {
+    background: linear-gradient(135deg, #A8EDEA 0%, #FED6E3 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.investment::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    animation: pulse 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-10%, -10%) scale(1.1);
+    }
+}
+
+.investment-highlight {
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.investment-highlight h3 {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+    color: var(--dark-color);
+    text-align: center;
+    font-weight: 700;
+}
+
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.highlight-card {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.highlight-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(155, 89, 182, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.highlight-card:hover {
+    transform: translateY(-15px) rotate(2deg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.highlight-card:hover::after {
+    opacity: 1;
+}
+
+.highlight-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.invest-amount {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.invest-detail {
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+.highlight-card ul {
+    list-style: none;
+    text-align: left;
+}
+
+.highlight-card ul li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+    color: var(--text-dark);
+}
+
+.highlight-card ul li:last-child {
+    border-bottom: none;
+}
+
+.roi {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.financial-plan {
+    margin-bottom: 4rem;
+}
+
+.financial-plan h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.financial-table {
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.financial-table thead {
+    background: var(--dark-color);
+    color: white;
+}
+
+.financial-table th,
+.financial-table td {
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.financial-table th {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.financial-table td {
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.financial-table tbody tr:hover {
+    background: #f8f8f8;
+}
+
+.expected-effects h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.effects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+}
+
+.effect-item {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    border-top: 4px solid transparent;
+}
+
+.effect-item:nth-child(1) {
+    border-top-color: var(--accent-blue);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, white 100%);
+}
+
+.effect-item:nth-child(2) {
+    border-top-color: var(--accent-green);
+    background: linear-gradient(135deg, rgba(92, 184, 92, 0.05) 0%, white 100%);
+}
+
+.effect-item:nth-child(3) {
+    border-top-color: var(--accent-orange);
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.05) 0%, white 100%);
+}
+
+.effect-item:nth-child(4) {
+    border-top-color: var(--accent-purple);
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.05) 0%, white 100%);
+}
+
+.effect-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.effect-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1.2rem;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.effect-item h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--dark-color);
+}
+
+.effect-item p {
+    color: var(--text-light);
+}
+
+/* 문의하기 */
+.contact {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-info {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info h3 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: var(--dark-color);
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.info-item {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-light-blue);
+    border-radius: 15px;
+    border-left: 4px solid var(--accent-blue);
+    transition: transform 0.3s;
+}
+
+.info-item:hover {
+    transform: translateX(10px);
+}
+
+.info-item strong {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--dark-color);
+    font-size: 1.2rem;
+}
+
+.info-item p {
+    color: var(--text-light);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.contact-form {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1.2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s;
+    background: #fafafa;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.1);
+    transform: translateY(-2px);
+}
+
+.submit-button {
+    width: 100%;
+    padding: 1.3rem 2rem;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 25px rgba(155, 89, 182, 0.3);
+}
+
+.submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(155, 89, 182, 0.5);
+}
+
+/* 푸터 */
+.footer {
+    background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-blue), var(--accent-green), var(--accent-purple));
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-purple));
+    transition: width 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--accent-orange-light);
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+/* 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 페이지 헤더 */
+.page-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    color: white;
+    padding: 8rem 0 4rem;
+    text-align: center;
+    margin-top: 70px;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 140, 66, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(92, 184, 92, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.page-header p {
+    font-size: 1.3rem;
+    opacity: 0.9;
+}
+
+/* 빠른 링크 */
+.quick-links {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.quick-link-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    display: block;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-link-card:nth-child(1) {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, white 100%);
+    border-top: 5px solid var(--accent-blue);
+}
+
+.quick-link-card:nth-child(2) {
+    background: linear-gradient(135deg, rgba(92, 184, 92, 0.05) 0%, white 100%);
+    border-top: 5px solid var(--accent-green);
+}
+
+.quick-link-card:nth-child(3) {
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.05) 0%, white 100%);
+    border-top: 5px solid var(--accent-orange);
+}
+
+.quick-link-card:nth-child(4) {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.05) 0%, white 100%);
+    border-top: 5px solid var(--accent-purple);
+}
+
+.quick-link-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.quick-link-card:hover::before {
+    opacity: 1;
+}
+
+.quick-link-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.quick-link-card .icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s;
+}
+
+.quick-link-card:hover .icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.quick-link-card h3 {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+    font-weight: 700;
+}
+
+.quick-link-card p {
+    color: var(--text-light);
+}
+
+/* 브랜드 철학 */
+.brand-philosophy {
+    background: white;
+}
+
+.philosophy-content {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.philosophy-item {
+    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.philosophy-item h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.philosophy-item > p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.philosophy-item ul {
+    list-style: none;
+    display: grid;
+    gap: 0.8rem;
+}
+
+.philosophy-item ul li {
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.philosophy-item ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 타임라인 */
+.timeline {
+    background: var(--light-color);
+}
+
+.timeline-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+    align-items: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 60px;
+    top: 100%;
+    width: 2px;
+    height: 2rem;
+    background: var(--primary-color);
+}
+
+.timeline-item:last-child::before {
+    display: none;
+}
+
+.timeline-year {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.timeline-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.timeline-info p {
+    color: var(--text-light);
+}
+
+.timeline-item.highlight {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+}
+
+.timeline-item.highlight .timeline-year,
+.timeline-item.highlight .timeline-info h3,
+.timeline-item.highlight .timeline-info p {
+    color: white;
+}
+
+/* 제품 */
+.products {
+    background: linear-gradient(135deg, var(--bg-light-orange) 0%, var(--bg-light-pink) 100%);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.product-card {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 25px;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card:nth-child(1) {
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.05) 0%, white 100%);
+    border-top: 5px solid var(--accent-orange);
+}
+
+.product-card:nth-child(2) {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.05) 0%, white 100%);
+    border-top: 5px solid var(--accent-yellow);
+}
+
+.product-card:nth-child(3) {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.05) 0%, white 100%);
+    border-top: 5px solid var(--accent-purple);
+}
+
+.product-card:nth-child(4) {
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, white 100%);
+    border-top: 5px solid var(--accent-blue);
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.product-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+.product-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.product-type {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.product-desc {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.product-specs {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.product-specs span {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* CTA 섹션 */
+.cta-section {
+    background: linear-gradient(135deg, var(--dark-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 2px solid white;
+}
+
+.cta-button.secondary:hover {
+    background: white;
+    color: var(--dark-color);
+}
+
+/* 프랜차이즈 상세 */
+.franchise-detail {
+    background: white;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.detail-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    border-left: 6px solid transparent;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.detail-card:nth-child(odd) {
+    border-left-color: var(--accent-blue);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.03) 0%, white 100%);
+}
+
+.detail-card:nth-child(even) {
+    border-left-color: var(--accent-purple);
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.03) 0%, white 100%);
+}
+
+.detail-card:hover {
+    transform: translateX(10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+}
+
+.detail-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.detail-card ul {
+    list-style: none;
+}
+
+.detail-card ul li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+    color: var(--text-dark);
+}
+
+.detail-card ul li:last-child {
+    border-bottom: none;
+}
+
+.detail-card ul li strong {
+    color: var(--dark-color);
+    margin-right: 0.5rem;
+}
+
+/* 생태계 */
+.ecosystem {
+    background: var(--light-color);
+}
+
+.ecosystem-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ecosystem-layer {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.layer-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.layer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.layer-item {
+    padding: 1.5rem;
+    background: #f8f8f8;
+    border-radius: 10px;
+}
+
+.layer-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.layer-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.ecosystem-arrow {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* 벤치마킹 */
+.benchmarking {
+    background: white;
+}
+
+.benchmark-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.comparison-header h3 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--dark-color);
+}
+
+.comparison-grid {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.comparison-item {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem;
+    background: #f8f8f8;
+    border-radius: 15px;
+}
+
+.comparison-label {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: #999;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.comparison-label.weizen {
+    background: var(--primary-color);
+}
+
+.comparison-item h4 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.comparison-item p {
+    color: var(--text-light);
+}
+
+.arrow-right {
+    font-size: 2rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* PDF 페이지 뷰어 공통 스타일 */
+.pdf-page-viewer {
+    width: 100%;
+    height: 700px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    margin: 2rem 0;
+}
+
+/* 전략 이미지 섹션 */
+.strategy-image-section {
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.strategy-image-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.strategy-diagram {
+    margin-bottom: 2rem;
+}
+
+.strategy-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.summary-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.summary-card p {
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+/* 시장 변곡점 섹션 */
+.market-shift-section {
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.market-shift-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.insight-box {
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.insight-box p {
+    color: white;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.insight-box strong {
+    font-weight: 700;
+}
+
+/* 페인 포인트 섹션 */
+.pain-point-section,
+.regulatory-section,
+.digital-platform-section,
+.data-membership-section {
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    background: #f8f8f8;
+    border-radius: 15px;
+}
+
+.pain-point-section h3,
+.regulatory-section h3,
+.digital-platform-section h3,
+.data-membership-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.solution-highlight,
+.game-changer-box {
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-color);
+    margin-top: 2rem;
+}
+
+.solution-highlight h4,
+.game-changer-box h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.solution-highlight p,
+.game-changer-box p {
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+/* 벤치마킹 관련 섹션 */
+.benchmarking-pillars-section,
+.space-strategy-section,
+.anchor-store-section,
+.people-strategy-section,
+.premium-lineup-section,
+.operations-section {
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.benchmarking-pillars-section h3,
+.space-strategy-section h3,
+.anchor-store-section h3,
+.people-strategy-section h3,
+.premium-lineup-section h3,
+.operations-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.anchor-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-item {
+    padding: 1.5rem;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border-top: 4px solid var(--primary-color);
+}
+
+.feature-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--dark-color);
+}
+
+.feature-item p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* 로드맵 섹션 */
+.execution-roadmap-section,
+.vision-section {
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+    border-radius: 15px;
+}
+
+.execution-roadmap-section h3,
+.vision-section h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.roadmap-phases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.phase-card {
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--primary-color);
+}
+
+.phase-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.phase-card ul {
+    list-style: none;
+}
+
+.phase-card ul li {
+    padding: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+    border-bottom: 1px solid #eee;
+}
+
+.phase-card ul li:last-child {
+    border-bottom: none;
+}
+
+.phase-card ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.vision-statement {
+    padding: 2.5rem;
+    background: linear-gradient(135deg, var(--dark-color) 0%, var(--secondary-color) 100%);
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 2rem;
+    color: white;
+}
+
+.vision-statement p {
+    line-height: 2;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.vision-statement strong {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.vision-statement h4 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+/* PDF 뷰어 */
+.benchmark-pdf {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background: #f8f8f8;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.benchmark-pdf h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.pdf-description {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.pdf-viewer-container {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+.pdf-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pdf-download-btn,
+.pdf-open-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-download-btn:hover,
+.pdf-open-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pdf-open-btn {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.pdf-open-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.pdf-download-btn span,
+.pdf-open-btn span {
+    font-size: 1.2rem;
+}
+
+/* 로드맵 */
+.roadmap {
+    background: var(--light-color);
+}
+
+.roadmap-timeline {
+    display: grid;
+    gap: 2rem;
+}
+
+.roadmap-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.roadmap-year {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+}
+
+.roadmap-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.roadmap-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.roadmap-content ul {
+    list-style: none;
+}
+
+.roadmap-content ul li {
+    padding: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.roadmap-content ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+/* 시장 트렌드 */
+.market-trends {
+    background: white;
+}
+
+.trends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.trend-card {
+    background: #f8f8f8;
+    padding: 2rem;
+    border-radius: 15px;
+    transition: all 0.3s;
+}
+
+.trend-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.trend-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.trend-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.trend-card > p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.trend-card ul {
+    list-style: none;
+}
+
+.trend-card ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.trend-card ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+/* 소비자 분석 */
+.consumer-analysis {
+    background: var(--light-color);
+}
+
+.consumer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.consumer-segment {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.consumer-segment h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.segment-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f8f8f8;
+    border-radius: 10px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat strong {
+    display: block;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+}
+
+.stat span {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.segment-characteristics h4,
+.segment-needs h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.segment-characteristics ul,
+.segment-needs ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.segment-characteristics ul li,
+.segment-needs ul li {
+    padding: 0.6rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.segment-characteristics ul li::before,
+.segment-needs ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 경쟁 환경 */
+.competitive-landscape {
+    background: white;
+}
+
+.competitive-content {
+    display: grid;
+    gap: 3rem;
+}
+
+.competitive-matrix {
+    background: #f8f8f8;
+    padding: 2.5rem;
+    border-radius: 15px;
+}
+
+.competitive-matrix h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.matrix-info {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.position-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.position-item {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+}
+
+.position-item.highlight {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+}
+
+.position-item.highlight strong,
+.position-item.highlight p {
+    color: white;
+}
+
+.position-item strong {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.position-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* SWOT */
+.swot-analysis h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.swot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.swot-item {
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 5px solid;
+}
+
+.swot-item.strength {
+    background: #e8f5e9;
+    border-color: #4caf50;
+}
+
+.swot-item.weakness {
+    background: #ffebee;
+    border-color: #f44336;
+}
+
+.swot-item.opportunity {
+    background: #e3f2fd;
+    border-color: #2196f3;
+}
+
+.swot-item.threat {
+    background: #fff3e0;
+    border-color: #ff9800;
+}
+
+.swot-item h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.swot-item ul {
+    list-style: none;
+}
+
+.swot-item ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.swot-item ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+}
+
+/* 시장 기회 */
+.market-opportunity {
+    background: var(--light-color);
+}
+
+.opportunity-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.opportunity-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--primary-color);
+}
+
+.opportunity-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.opportunity-card p {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* 수익 모델 상세 */
+.revenue-detail {
+    background: var(--light-color);
+}
+
+.revenue-detail-grid {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.revenue-detail-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.revenue-detail-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    border-bottom: 3px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.revenue-breakdown {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.breakdown-item {
+    padding: 1.2rem;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.breakdown-item strong {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--dark-color);
+}
+
+.breakdown-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.revenue-example {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+}
+
+.revenue-example h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.revenue-example p {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.revenue-example small {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* 비용 구조 */
+.cost-structure {
+    background: white;
+}
+
+.cost-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.cost-card {
+    background: #f8f8f8;
+    padding: 2.5rem;
+    border-radius: 15px;
+}
+
+.cost-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.cost-breakdown {
+    display: grid;
+    gap: 1rem;
+}
+
+.cost-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cost-label {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.cost-bar {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.profit-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.profit-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.profit-table th,
+.profit-table td {
+    padding: 1rem;
+    text-align: left;
+}
+
+.profit-table th {
+    background: var(--dark-color);
+    color: white;
+}
+
+.profit-table td.highlight {
+    background: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+.cost-card > p {
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.cost-card > ul {
+    list-style: none;
+}
+
+.cost-card > ul li {
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.cost-card > ul li strong {
+    color: var(--dark-color);
+    margin-right: 0.5rem;
+}
+
+/* 경쟁 우위 */
+.competitive-advantages {
+    background: var(--light-color);
+}
+
+.advantages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.advantage-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--primary-color);
+    text-align: center;
+}
+
+.advantage-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.advantage-card p {
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* 투자 니즈 */
+.investment-needs {
+    background: white;
+}
+
+.needs-grid {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.need-card {
+    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+    padding: 2.5rem;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.need-number {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.need-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.need-card > p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.need-card ul {
+    list-style: none;
+}
+
+.need-card ul li {
+    padding: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.need-card ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 재무 계획 상세 */
+.financial-note {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.financial-note p {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.financial-note ul {
+    list-style: none;
+}
+
+.financial-note ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.financial-note ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 자금 사용 */
+.fund-usage {
+    background: white;
+}
+
+.fund-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.fund-card {
+    background: #f8f8f8;
+    padding: 2.5rem;
+    border-radius: 15px;
+    border-top: 5px solid var(--primary-color);
+}
+
+.fund-amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.fund-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.fund-details {
+    display: grid;
+    gap: 1rem;
+}
+
+.detail-item {
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.detail-item strong {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--dark-color);
+}
+
+.detail-item p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* ROI 시나리오 */
+.roi-scenario {
+    background: linear-gradient(135deg, var(--bg-light-blue) 0%, var(--bg-light-green) 100%);
+}
+
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.scenario-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-top: 6px solid;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.scenario-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.02) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.scenario-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.scenario-card:hover::before {
+    opacity: 1;
+}
+
+.scenario-card.conservative {
+    border-color: var(--accent-blue);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, white 100%);
+}
+
+.scenario-card.base {
+    border-color: var(--accent-orange);
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.05) 0%, white 100%);
+}
+
+.scenario-card.aggressive {
+    border-color: var(--accent-green);
+    background: linear-gradient(135deg, rgba(92, 184, 92, 0.05) 0%, white 100%);
+}
+
+.scenario-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.scenario-assumption,
+.scenario-result {
+    margin-bottom: 1.5rem;
+}
+
+.scenario-assumption h4,
+.scenario-result h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.scenario-assumption ul {
+    list-style: none;
+}
+
+.scenario-assumption ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.scenario-assumption ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.result-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.result-roi,
+.result-irr {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+}
+
+.result-roi strong,
+.result-irr strong {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+/* Exit 전략 */
+.exit-strategy {
+    background: white;
+}
+
+.exit-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.exit-option {
+    background: #f8f8f8;
+    padding: 2.5rem;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-color);
+}
+
+.exit-option h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+.exit-timeline {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.exit-option > p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.exit-option ul {
+    list-style: none;
+}
+
+.exit-option ul li {
+    padding: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.exit-option ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 리스크 관리 */
+.risk-management {
+    background: linear-gradient(135deg, var(--bg-light-pink) 0%, var(--bg-light-orange) 100%);
+}
+
+.risk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.risk-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-top: 5px solid var(--accent-red);
+}
+
+.risk-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(231, 76, 60, 0.3);
+}
+
+.risk-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.risk-content {
+    display: grid;
+    gap: 2rem;
+}
+
+.risk-desc {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1) 0%, rgba(231, 76, 60, 0.05) 100%);
+    border-radius: 15px;
+    color: var(--accent-red);
+    font-weight: 600;
+    border-left: 4px solid var(--accent-red);
+}
+
+.risk-response {
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(92, 184, 92, 0.08) 0%, white 100%);
+    border-radius: 15px;
+    border-left: 5px solid var(--accent-green);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.risk-response strong {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.risk-response ul {
+    list-style: none;
+}
+
+.risk-response ul li {
+    padding: 0.6rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.risk-response ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 문의 폼 스타일 개선 */
+.contact-intro {
+    margin-bottom: 2rem;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.privacy-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.privacy-link:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #e0e0e0;
+}
+
+.social-links h4 {
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.social-icon:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* 문의 유형 */
+.inquiry-types {
+    background: linear-gradient(135deg, var(--bg-light-teal) 0%, var(--bg-light-blue) 100%);
+}
+
+.inquiry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.inquiry-card {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 25px;
+    border-top: 6px solid transparent;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+
+.inquiry-card:nth-child(1) {
+    border-top-color: var(--accent-blue);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, white 100%);
+}
+
+.inquiry-card:nth-child(2) {
+    border-top-color: var(--accent-green);
+    background: linear-gradient(135deg, rgba(92, 184, 92, 0.05) 0%, white 100%);
+}
+
+.inquiry-card:nth-child(3) {
+    border-top-color: var(--accent-orange);
+    background: linear-gradient(135deg, rgba(255, 140, 66, 0.05) 0%, white 100%);
+}
+
+.inquiry-card:nth-child(4) {
+    border-top-color: var(--accent-purple);
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.05) 0%, white 100%);
+}
+
+.inquiry-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.inquiry-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.inquiry-card h3 {
+    font-size: 1.7rem;
+    margin-bottom: 1.2rem;
+    color: var(--dark-color);
+    font-weight: 700;
+}
+
+.inquiry-card > p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.inquiry-card ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.inquiry-card ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.inquiry-card ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.response-time {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* FAQ */
+.faq {
+    background: var(--light-color);
+}
+
+.faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: white;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.faq-question:hover {
+    background: #f8f8f8;
+}
+
+.faq-question h4 {
+    font-size: 1.1rem;
+    color: var(--dark-color);
+}
+
+.faq-toggle {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    display: none;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+/* 위치 */
+.location {
+    background: white;
+}
+
+.location-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+}
+
+.map-placeholder {
+    background: #e0e0e0;
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+    color: #666;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.map-placeholder p {
+    font-size: 1.2rem;
+}
+
+.location-info h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+}
+
+.transport-item {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: #f8f8f8;
+    border-radius: 10px;
+}
+
+.transport-item strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+    font-size: 1.1rem;
+}
+
+.transport-item p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* 반응형 */
+@media (max-width: 968px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: var(--dark-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu a.active {
+        display: inline-block;
+        margin: 0.5rem auto;
+        width: fit-content;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    /* 모바일 드롭다운 */
+    .has-dropdown {
+        position: static;
+    }
+
+    .dropdown-menu {
+        position: static;
+        display: none;
+        background: rgba(0, 0, 0, 0.3);
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+    }
+
+    .has-dropdown.active .dropdown-menu,
+    .has-dropdown.keep-open .dropdown-menu {
+        display: block;
+    }
+
+    .has-dropdown:hover .dropdown-menu {
+        display: none;
+    }
+
+    .has-dropdown.keep-open:hover .dropdown-menu {
+        display: block;
+    }
+
+    /* 모바일에서 keep-open 드롭다운 메뉴 스타일 */
+    .has-dropdown.keep-open .dropdown-menu {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(212, 165, 116, 0.3);
+        margin-top: 0.5rem;
+        border-radius: 10px;
+        padding: 0.5rem 0;
+    }
+
+    .has-dropdown.keep-open .dropdown-menu a.active {
+        background: linear-gradient(90deg, var(--accent-orange) 0%, var(--accent-purple) 100%);
+        color: white;
+        font-weight: 600;
+        margin: 0.3rem 1rem;
+        border-radius: 20px;
+        padding: 0.7rem 1.5rem;
+    }
+
+    .dropdown-menu a {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .dropdown-menu a:hover {
+        padding-left: 2.5rem;
+    }
+
+    .hero {
+        height: 70vh;
+        padding: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-item h3 {
+        font-size: 2.2rem;
+    }
+
+    .stat-item p {
+        font-size: 0.9rem;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin-top: -1.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .page-header {
+        padding: 6rem 0 3rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .page-header p {
+        font-size: 1rem;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .location-content {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-item {
+        grid-template-columns: 1fr;
+    }
+
+    .arrow-right {
+        transform: rotate(90deg);
+        text-align: center;
+    }
+
+    .roadmap-item {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+    }
+
+    /* 카드 간격 및 패딩 최적화 */
+    .about-card,
+    .market-card,
+    .highlight-card,
+    .effect-item,
+    .scenario-card,
+    .risk-card,
+    .inquiry-card,
+    .product-card,
+    .detail-card,
+    .quick-link-card {
+        padding: 1.5rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .about-grid,
+    .market-grid,
+    .highlight-grid,
+    .effects-grid,
+    .scenario-grid,
+    .risk-grid,
+    .inquiry-grid,
+    .products-grid,
+    .detail-grid,
+    .quick-links-grid {
+        gap: 1.2rem !important;
+    }
+
+    .revenue-streams {
+        gap: 1.2rem !important;
+    }
+
+    .revenue-item {
+        padding: 1.5rem !important;
+    }
+
+    .strategy-item {
+        padding: 1.8rem !important;
+        margin-bottom: 1.2rem;
+    }
+
+    .strategy-content {
+        gap: 1.5rem !important;
+    }
+
+    /* 이미지 높이 최적화 */
+    .concept-image img {
+        height: 200px !important;
+    }
+
+    .concept-gallery {
+        gap: 2rem !important;
+    }
+
+    .concept-item {
+        padding: 1.5rem !important;
+    }
+
+    .concept-info {
+        padding: 1rem !important;
+    }
+
+    .concept-info h3 {
+        font-size: 1.4rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .concept-info p {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+
+    /* PDF 뷰어 최적화 */
+    .pdf-viewer {
+        height: 300px;
+    }
+
+    .pdf-page-viewer {
+        height: 350px;
+    }
+
+    .franchise-pdf-viewer,
+    .pdf-document-viewer {
+        height: 300px !important;
+    }
+
+    /* 폼 요소 최적화 */
+    .contact-info,
+    .contact-form {
+        padding: 1.5rem !important;
+    }
+
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .info-item {
+        margin-bottom: 1rem;
+        padding: 1rem !important;
+    }
+
+    /* 타임라인 최적화 */
+    .timeline-item {
+        padding: 1.2rem !important;
+    }
+
+    .timeline-year {
+        font-size: 1.5rem !important;
+    }
+
+    /* 제품 카드 최적화 */
+    .product-card h3 {
+        font-size: 1.3rem !important;
+    }
+
+    .product-type {
+        font-size: 0.85rem !important;
+    }
+
+    .product-desc {
+        font-size: 0.9rem !important;
+    }
+
+    /* 철학 섹션 최적화 */
+    .philosophy-item {
+        padding: 1.5rem !important;
+        margin-bottom: 1.5rem;
+    }
+
+    .philosophy-item h3 {
+        font-size: 1.4rem !important;
+    }
+
+    .philosophy-item ul {
+        margin-top: 1rem;
+    }
+
+    .philosophy-item li {
+        padding: 0.5rem 0 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .pdf-actions {
+        flex-direction: column;
+    }
+
+    .pdf-download-btn,
+    .pdf-open-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .strategy-summary,
+    .anchor-features,
+    .roadmap-phases {
+        grid-template-columns: 1fr;
+    }
+
+    .footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    /* 컨테이너 패딩 최소화 */
+    .container {
+        padding: 0 15px;
+    }
+
+    /* 히어로 섹션 극도 최적화 */
+    .hero {
+        height: 60vh;
+        padding: 1rem 0.5rem;
+    }
+
+    .hero h1 {
+        font-size: 1.6rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.3;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-stats {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-item h3 {
+        font-size: 1.8rem;
+    }
+
+    .stat-item p {
+        font-size: 0.85rem;
+    }
+
+    .cta-button {
+        padding: 0.9rem 2rem !important;
+        font-size: 1rem !important;
+    }
+
+    /* 섹션 최적화 */
+    .section {
+        padding: 2rem 0 !important;
+    }
+
+    .section-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        padding-bottom: 0.8rem !important;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem !important;
+        margin-top: -1rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .page-header {
+        padding: 5rem 0 2rem !important;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .page-header p {
+        font-size: 0.9rem !important;
+    }
+
+    /* 그리드 최적화 */
+    .about-grid,
+    .market-grid,
+    .revenue-streams,
+    .highlight-grid,
+    .effects-grid,
+    .quick-links-grid,
+    .trends-grid,
+    .consumer-grid,
+    .scenario-grid,
+    .exit-options,
+    .risk-grid,
+    .inquiry-grid,
+    .products-grid,
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem !important;
+    }
+
+    /* 카드 패딩 극도 최소화 */
+    .about-card,
+    .market-card,
+    .highlight-card,
+    .effect-item,
+    .scenario-card,
+    .risk-card,
+    .inquiry-card,
+    .product-card,
+    .detail-card,
+    .quick-link-card,
+    .revenue-item,
+    .strategy-item {
+        padding: 1.2rem !important;
+        border-radius: 15px !important;
+    }
+
+    .about-card .icon,
+    .effect-icon,
+    .inquiry-icon {
+        font-size: 2.5rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .about-card h3,
+    .market-card h3,
+    .highlight-card h4,
+    .effect-item h4,
+    .inquiry-card h3,
+    .product-card h3,
+    .detail-card h3,
+    .quick-link-card h3 {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.7rem !important;
+    }
+
+    .about-card p,
+    .market-card p,
+    .effect-item p,
+    .inquiry-card p,
+    .detail-card p {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* PDF 뷰어 최소화 */
+    .pdf-viewer {
+        height: 250px !important;
+    }
+
+    .pdf-page-viewer {
+        height: 300px !important;
+    }
+
+    .franchise-pdf-viewer,
+    .pdf-document-viewer {
+        height: 250px !important;
+    }
+
+    /* 전략 섹션 최적화 */
+    .benchmark-pdf,
+    .strategy-image-section,
+    .market-shift-section,
+    .pain-point-section,
+    .regulatory-section,
+    .digital-platform-section,
+    .data-membership-section,
+    .benchmarking-pillars-section,
+    .space-strategy-section,
+    .anchor-store-section,
+    .people-strategy-section,
+    .premium-lineup-section,
+    .operations-section,
+    .execution-roadmap-section,
+    .vision-section,
+    .business-plan-download,
+    .delivery-strategy-document,
+    .franchise-strategy-document {
+        padding: 1.2rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .benchmark-pdf h3,
+    .strategy-image-section h3,
+    .market-shift-section h3,
+    .pain-point-section h3,
+    .regulatory-section h3,
+    .digital-platform-section h3,
+    .data-membership-section h3,
+    .benchmarking-pillars-section h3,
+    .space-strategy-section h3,
+    .anchor-store-section h3,
+    .people-strategy-section h3,
+    .premium-lineup-section h3,
+    .operations-section h3,
+    .execution-roadmap-section h3,
+    .vision-section h3 {
+        font-size: 1.2rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .download-card {
+        padding: 1.2rem !important;
+    }
+
+    .download-card h2,
+    .document-header h3,
+    .franchise-doc-header h3 {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .document-header p,
+    .franchise-doc-header p {
+        font-size: 0.9rem !important;
+    }
+
+    .highlights-grid,
+    .franchise-highlights-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem !important;
+    }
+
+    .highlight-item,
+    .franchise-highlight-item {
+        padding: 1rem !important;
+    }
+
+    .document-actions,
+    .franchise-doc-actions {
+        flex-direction: column;
+        gap: 0.8rem !important;
+    }
+
+    .doc-download-btn,
+    .doc-view-btn,
+    .franchise-download-btn,
+    .franchise-view-btn,
+    .download-btn,
+    .view-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.8rem 1.5rem !important;
+        font-size: 0.95rem !important;
+    }
+
+    .document-highlights,
+    .franchise-highlights {
+        padding: 1rem !important;
+    }
+
+    .document-highlights h4,
+    .franchise-highlights h4 {
+        font-size: 1.2rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* 제품 섹션 최적화 */
+    .product-type {
+        font-size: 0.8rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .product-desc {
+        font-size: 0.85rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .product-specs {
+        font-size: 0.85rem !important;
+    }
+
+    /* 타임라인 최적화 */
+    .timeline-content {
+        gap: 1rem !important;
+    }
+
+    .timeline-item {
+        padding: 1rem !important;
+    }
+
+    .timeline-year {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .timeline-info h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .timeline-info p {
+        font-size: 0.85rem !important;
+    }
+
+    /* 철학 섹션 최적화 */
+    .philosophy-content {
+        gap: 1.2rem !important;
+    }
+
+    .philosophy-item {
+        padding: 1.2rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .philosophy-item h3 {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .philosophy-item p {
+        font-size: 0.9rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .philosophy-item ul {
+        margin-top: 0.8rem !important;
+        gap: 0.4rem !important;
+    }
+
+    .philosophy-item li {
+        padding: 0.4rem 0 !important;
+        font-size: 0.85rem !important;
+    }
+
+    /* Contact 섹션 최적화 */
+    .contact-content {
+        gap: 1.5rem !important;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 1.2rem !important;
+        border-radius: 20px !important;
+    }
+
+    .contact-info h3 {
+        font-size: 1.3rem !important;
+        margin-bottom: 1.2rem !important;
+    }
+
+    .info-item {
+        margin-bottom: 0.8rem !important;
+        padding: 0.8rem !important;
+    }
+
+    .info-item strong {
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .info-item p {
+        font-size: 0.85rem !important;
+    }
+
+    .form-group {
+        margin-bottom: 0.8rem !important;
+    }
+
+    .form-group label {
+        font-size: 0.9rem !important;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.9rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    .submit-button {
+        padding: 1rem 1.5rem !important;
+        font-size: 1rem !important;
+    }
+
+    /* Footer 최적화 */
+    .footer {
+        padding: 2rem 0 !important;
+    }
+
+    .footer p {
+        font-size: 0.85rem !important;
+    }
+
+    .footer-links a {
+        font-size: 0.85rem !important;
+    }
+
+    /* CTA 섹션 최적화 */
+    .cta-section {
+        padding: 2rem 0 !important;
+    }
+
+    .cta-section h2 {
+        font-size: 1.4rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .cta-section p {
+        font-size: 0.9rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .cta-buttons {
+        gap: 0.8rem !important;
+    }
+
+    .cta-button.secondary {
+        padding: 0.9rem 2rem !important;
+        font-size: 1rem !important;
+    }
+
+    /* 매장 컨셉 갤러리 극도 최적화 */
+    .concept-gallery {
+        gap: 1.5rem !important;
+    }
+
+    .concept-item {
+        padding: 1rem !important;
+    }
+
+    .concept-image {
+        margin-bottom: 1rem;
+    }
+
+    .concept-image img {
+        height: 180px !important;
+    }
+
+    .concept-info {
+        padding: 0.5rem !important;
+    }
+
+    .concept-info h3 {
+        font-size: 1.2rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .concept-info p {
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* 투자 금액 최적화 */
+    .invest-amount {
+        font-size: 2.2rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .invest-detail {
+        font-size: 0.9rem !important;
+    }
+
+    /* 마켓 스탯 최적화 */
+    .market-stat {
+        padding: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .big-number {
+        font-size: 2.5rem !important;
+    }
+
+    .market-label {
+        font-size: 1rem !important;
+    }
+
+    /* 전략 번호 최적화 */
+    .strategy-number {
+        width: 50px !important;
+        height: 50px !important;
+        line-height: 50px !important;
+        font-size: 1.3rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .strategy-item h3 {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .strategy-item p {
+        font-size: 0.9rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .strategy-item ul {
+        gap: 0.5rem !important;
+    }
+
+    .strategy-item li {
+        font-size: 0.85rem !important;
+        padding-left: 1.2rem !important;
+    }
+}
+
+/* 배송 전략 문서 섹션 */
+.delivery-strategy-document {
+    background: white;
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.document-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.document-header h3 {
+    font-size: 2rem;
+    color: var(--dark-color);
+    margin-bottom: 0.8rem;
+}
+
+.document-header p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.document-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.doc-download-btn,
+.doc-view-btn {
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.doc-download-btn {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.doc-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
+}
+
+.doc-view-btn {
+    background: white;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.doc-view-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.document-preview {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-document-viewer {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+
+.document-highlights {
+    background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.document-highlights h4 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.highlight-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.highlight-item:hover {
+    transform: translateY(-5px);
+}
+
+.highlight-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-item h5 {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.highlight-item p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* 사업 계획서 다운로드 섹션 */
+.business-plan-download {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 4rem 0;
+}
+
+.download-card {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.download-card h2 {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+}
+
+.download-card p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.download-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.download-btn,
+.view-btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.download-btn {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.4);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.6);
+}
+
+.view-btn {
+    background: white;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.view-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.pdf-preview {
+    margin-top: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.pdf-viewer {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+/* 프랜차이즈 전략 문서 스타일 */
+.franchise-strategy-document {
+    background: white;
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.franchise-doc-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.franchise-doc-header h3 {
+    font-size: 2rem;
+    color: var(--dark-color);
+    margin-bottom: 0.8rem;
+}
+
+.franchise-doc-header p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.franchise-doc-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.franchise-download-btn,
+.franchise-view-btn {
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.franchise-download-btn {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+}
+
+.franchise-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 165, 116, 0.5);
+}
+
+.franchise-view-btn {
+    background: white;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.franchise-view-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.franchise-doc-preview {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.franchise-pdf-viewer {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+.franchise-highlights {
+    background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.franchise-highlights h4 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.franchise-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.franchise-highlight-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.franchise-highlight-item:hover {
+    transform: translateY(-5px);
+}
+
+.franchise-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.franchise-highlight-item h5 {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.franchise-highlight-item p {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* 매장 컨셉 & 경험 섹션 */
+.store-concept {
+    background: linear-gradient(135deg, var(--bg-light-orange) 0%, var(--bg-light-pink) 100%);
+    position: relative;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-top: -2rem;
+    margin-bottom: 4rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.concept-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.concept-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.concept-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.03) 0%, rgba(155, 89, 182, 0.03) 100%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.concept-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.concept-item:hover::before {
+    opacity: 1;
+}
+
+.concept-item.reverse {
+    grid-template-columns: 1fr 1fr;
+}
+
+.concept-item.reverse .concept-image {
+    order: 2;
+}
+
+.concept-item.reverse .concept-info {
+    order: 1;
+}
+
+.concept-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s;
+}
+
+.concept-item:hover .concept-image {
+    transform: scale(1.03);
+}
+
+.concept-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s;
+}
+
+.concept-item:hover .concept-image img {
+    transform: scale(1.1);
+}
+
+.concept-info {
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.concept-info h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.concept-info p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+/* 매장 컨셉 반응형 */
+@media (max-width: 968px) {
+    .concept-item,
+    .concept-item.reverse {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .concept-item.reverse .concept-image,
+    .concept-item.reverse .concept-info {
+        order: unset;
+    }
+
+    .concept-image img {
+        height: 300px;
+    }
+
+    .concept-info {
+        padding: 1rem;
+    }
+
+    .concept-info h3 {
+        font-size: 1.6rem;
+    }
+
+    .concept-info p {
+        font-size: 1rem;
+    }
+
+    .concept-gallery {
+        gap: 3rem;
+    }
+}
+
+/* 초소형 화면 (400px 이하) 극도 최적화 */
+@media (max-width: 400px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .hero {
+        height: 55vh;
+    }
+
+    .hero h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .stat-item h3 {
+        font-size: 1.6rem;
+    }
+
+    .cta-button {
+        padding: 0.8rem 1.5rem !important;
+        font-size: 0.95rem !important;
+    }
+
+    .section {
+        padding: 1.5rem 0 !important;
+    }
+
+    .section-title {
+        font-size: 1.3rem !important;
+        margin-bottom: 1.2rem !important;
+    }
+
+    .page-header {
+        padding: 4.5rem 0 1.5rem !important;
+    }
+
+    .page-header h1 {
+        font-size: 1.3rem !important;
+    }
+
+    .about-card,
+    .market-card,
+    .highlight-card,
+    .effect-item,
+    .scenario-card,
+    .risk-card,
+    .inquiry-card,
+    .product-card,
+    .detail-card,
+    .quick-link-card {
+        padding: 1rem !important;
+    }
+
+    .concept-image img {
+        height: 160px !important;
+    }
+
+    .concept-info h3 {
+        font-size: 1.1rem !important;
+    }
+
+    .concept-info p {
+        font-size: 0.8rem !important;
+    }
+
+    .pdf-viewer,
+    .franchise-pdf-viewer,
+    .pdf-document-viewer {
+        height: 220px !important;
+    }
+
+    .invest-amount {
+        font-size: 2rem !important;
+    }
+
+    .big-number {
+        font-size: 2.2rem !important;
+    }
+
+    .strategy-number {
+        width: 45px !important;
+        height: 45px !important;
+        line-height: 45px !important;
+        font-size: 1.2rem !important;
+    }
+}
