@@ -165,93 +165,184 @@
         </div>
     </section>
 
-    <!-- 매장 컨셉 & 경험 -->
-    <section class="section store-concept">
+    <!-- 매장 & 공간 갤러리 -->
+    <section class="section store-gallery-tabs">
         <div class="container">
-            <h2 class="section-title">매장 컨셉 & 경험</h2>
-            <p class="section-subtitle">바이젠은 단순히 맥주를 판매하는 곳이 아닌, 특별한 경험을 제공하는 문화 공간입니다</p>
+            <h2 class="section-title">매장 & 공간 소개</h2>
+            <p class="section-subtitle">바이젠이 운영하는 매장과 브루어리를 둘러보세요</p>
 
-            <div class="concept-gallery">
-                <div class="concept-item">
-                    <div class="concept-image">
-                        <img src="이미지 4111.png" alt="클래식 펍 인테리어">
-                    </div>
-                    <div class="concept-info">
-                        <h3>클래식 펍 인테리어</h3>
-                        <p>따뜻한 우드 톤과 편안한 조명으로 꾸며진 공간에서 프리미엄 수제맥주의 깊은 맛을 느껴보세요. 전통적인 유럽 펍의 분위기를 재현한 메인 홀은 친구, 동료들과 함께 특별한 시간을 보내기에 완벽합니다.</p>
-                    </div>
-                </div>
+            <!-- 탭 메뉴 -->
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-tab="concept">매장 컨셉</button>
+                <button class="gallery-tab" data-tab="daejeon">대전맥조장</button>
+                <button class="gallery-tab" data-tab="chicken">치맥브라더스</button>
+                <button class="gallery-tab" data-tab="brewery">브루어리 공장</button>
+            </div>
 
-                <div class="concept-item reverse">
-                    <div class="concept-image">
-                        <img src="이미지 511.png" alt="프리미엄 드래프트 타워">
+            <!-- 탭 컨텐츠: 매장 컨셉 -->
+            <div class="gallery-tab-content active" id="tab-concept">
+                <div class="concept-gallery">
+                    <div class="concept-item">
+                        <div class="concept-image">
+                            <img src="이미지 4111.png" alt="클래식 펍 인테리어">
+                        </div>
+                        <div class="concept-info">
+                            <h3>클래식 펍 인테리어</h3>
+                            <p>따뜻한 우드 톤과 편안한 조명으로 꾸며진 공간에서 프리미엄 수제맥주의 깊은 맛을 느껴보세요. 전통적인 유럽 펍의 분위기를 재현한 메인 홀은 친구, 동료들과 함께 특별한 시간을 보내기에 완벽합니다.</p>
+                        </div>
                     </div>
-                    <div class="concept-info">
-                        <h3>프리미엄 드래프트 타워</h3>
-                        <p>상징적인 황금 드래프트 타워에서 직접 따라 마시는 신선한 수제맥주. 눈앞에서 완벽하게 따라지는 맥주는 시각적인 즐거움과 함께 최상의 맛을 선사합니다. 모든 바이젠 매장의 시그니처 경험입니다.</p>
+                    <div class="concept-item reverse">
+                        <div class="concept-image">
+                            <img src="이미지 511.png" alt="프리미엄 드래프트 타워">
+                        </div>
+                        <div class="concept-info">
+                            <h3>프리미엄 드래프트 타워</h3>
+                            <p>상징적인 황금 드래프트 타워에서 직접 따라 마시는 신선한 수제맥주. 눈앞에서 완벽하게 따라지는 맥주는 시각적인 즐거움과 함께 최상의 맛을 선사합니다.</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="concept-item">
-                    <div class="concept-image">
-                        <img src="이미지 611.png" alt="프라이빗 라운지">
+                    <div class="concept-item">
+                        <div class="concept-image">
+                            <img src="이미지 611.png" alt="프라이빗 라운지">
+                        </div>
+                        <div class="concept-info">
+                            <h3>프라이빗 VIP 라운지</h3>
+                            <p>고급스러운 그린 가죽 소파와 벽난로가 있는 프라이빗 공간. 비즈니스 미팅이나 특별한 날을 위한 독립된 공간에서 품격 있는 시간을 보내실 수 있습니다.</p>
+                        </div>
                     </div>
-                    <div class="concept-info">
-                        <h3>프라이빗 VIP 라운지</h3>
-                        <p>고급스러운 그린 가죽 소파와 벽난로가 있는 프라이빗 공간. 비즈니스 미팅이나 특별한 날을 위한 독립된 공간에서 프리미엄 서비스와 함께 품격 있는 시간을 보내실 수 있습니다.</p>
+                    <div class="concept-item reverse">
+                        <div class="concept-image">
+                            <img src="이미지 711.png" alt="커뮤니티 테이블">
+                        </div>
+                        <div class="concept-info">
+                            <h3>커뮤니티 테이블</h3>
+                            <p>대형 원목 테이블을 중심으로 자연스럽게 형성되는 커뮤니티. 정기적인 맥주 시음회와 문화 이벤트가 열리는 바이젠만의 특별한 경험을 제공합니다.</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="concept-item reverse">
-                    <div class="concept-image">
-                        <img src="이미지 711.png" alt="커뮤니티 테이블">
+                    <div class="concept-item">
+                        <div class="concept-image">
+                            <img src="이미지 811.png" alt="디테일한 인테리어">
+                        </div>
+                        <div class="concept-info">
+                            <h3>장인정신의 디테일</h3>
+                            <p>공간 곳곳에 숨겨진 세심한 디테일. 맥주 제조 과정을 담은 빈티지 월페이퍼, 수작업으로 시공된 바닥 패턴까지. 모든 요소가 바이젠의 장인정신을 표현합니다.</p>
+                        </div>
                     </div>
-                    <div class="concept-info">
-                        <h3>커뮤니티 테이블</h3>
-                        <p>대형 원목 테이블을 중심으로 자연스럽게 형성되는 커뮤니티. 낯선 이들도 맥주 한 잔을 통해 친구가 되는 공간. 정기적인 맥주 시음회와 문화 이벤트가 열리는 바이젠만의 특별한 경험을 제공합니다.</p>
+                    <div class="concept-item reverse">
+                        <div class="concept-image">
+                            <img src="이미지 911.png" alt="스토리 라운지">
+                        </div>
+                        <div class="concept-info">
+                            <h3>Stories & Spirits 라운지</h3>
+                            <p>책과 위스키, 맥주가 어우러지는 지적인 공간. 편안한 가죽 소파에서 좋은 책과 함께 프리미엄 맥주를 즐기는 문화적 경험을 제공합니다.</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="concept-item">
-                    <div class="concept-image">
-                        <img src="이미지 811.png" alt="디테일한 인테리어">
+                    <div class="concept-item">
+                        <div class="concept-image">
+                            <img src="이미지 1011.png" alt="인더스트리얼 브루잉 존">
+                        </div>
+                        <div class="concept-info">
+                            <h3>Good Times Brewing Zone</h3>
+                            <p>노출된 벽돌과 네온 사인이 어우러진 인더스트리얼 감성. 실제 맥주통을 활용한 테이블과 의자로 양조장의 생생한 분위기를 연출합니다.</p>
+                        </div>
                     </div>
-                    <div class="concept-info">
-                        <h3>장인정신의 디테일</h3>
-                        <p>공간 곳곳에 숨겨진 세심한 디테일. 맥주 제조 과정을 담은 빈티지 월페이퍼, 수작업으로 시공된 바닥 패턴까지. 모든 요소가 바이젠의 장인정신을 표현합니다.</p>
-                    </div>
-                </div>
-
-                <div class="concept-item reverse">
-                    <div class="concept-image">
-                        <img src="이미지 911.png" alt="스토리 라운지">
-                    </div>
-                    <div class="concept-info">
-                        <h3>Stories & Spirits 라운지</h3>
-                        <p>책과 위스키, 맥주가 어우러지는 지적인 공간. 편안한 가죽 소파에서 좋은 책과 함께 프리미엄 맥주를 즐기는 문화적 경험. 조용한 대화와 사색을 위한 아늑한 분위기를 제공합니다.</p>
-                    </div>
-                </div>
-
-                <div class="concept-item">
-                    <div class="concept-image">
-                        <img src="이미지 1011.png" alt="인더스트리얼 브루잉 존">
-                    </div>
-                    <div class="concept-info">
-                        <h3>Good Times Brewing Zone</h3>
-                        <p>노출된 벽돌과 네온 사인이 어우러진 인더스트리얼 감성. 실제 맥주통을 활용한 테이블과 의자로 양조장의 생생한 분위기를 연출. 젊고 트렌디한 감성을 추구하는 고객들을 위한 포토 스팟입니다.</p>
-                    </div>
-                </div>
-
-                <div class="concept-item reverse">
-                    <div class="concept-image">
-                        <img src="이미지 121.png" alt="레트로 게임 존">
-                    </div>
-                    <div class="concept-info">
-                        <h3>레트로 게임 & 포토 존</h3>
-                        <p>80-90년대 감성의 레트로 게임존. 핀볼 머신, 체스판, 그리고 SNS 인증샷을 위한 포토 존까지. 맥주와 함께 즐기는 엔터테인먼트로 2030 세대를 사로잡는 차별화된 경험을 제공합니다.</p>
+                    <div class="concept-item reverse">
+                        <div class="concept-image">
+                            <img src="이미지 121.png" alt="레트로 게임 존">
+                        </div>
+                        <div class="concept-info">
+                            <h3>레트로 게임 & 포토 존</h3>
+                            <p>80-90년대 감성의 레트로 게임존. 핀볼 머신, 체스판, 그리고 SNS 인증샷을 위한 포토 존까지. 차별화된 경험을 제공합니다.</p>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- 탭 컨텐츠: 대전맥조장 -->
+            <div class="gallery-tab-content" id="tab-daejeon">
+                <div class="store-layout">
+                    <!-- 왼쪽: 외관 사진 세로로 크게 -->
+                    <div class="store-hero-photo">
+                        <img src="KakaoTalk_20260130_092532286_06.jpg" alt="대전맥조장 외관">
+                        <div class="photo-overlay"><span>매장 외관</span></div>
+                    </div>
+                    <!-- 오른쪽: 내부 사진 그리드 -->
+                    <div class="store-sub-photos">
+                        <div class="photo-gallery-item">
+                            <img src="KakaoTalk_20260130_092532286_04 (2).jpg" alt="대전맥조장 내부 전경">
+                            <div class="photo-overlay"><span>내부 전경</span></div>
+                        </div>
+                        <div class="photo-gallery-item">
+                            <img src="KakaoTalk_20260130_092532286_05 (2).jpg" alt="대전맥조장 홀">
+                            <div class="photo-overlay"><span>매장 홀</span></div>
+                        </div>
+                        <div class="photo-gallery-item">
+                            <img src="KakaoTalk_20260130_092532286_02.jpg" alt="대전맥조장 바 카운터">
+                            <div class="photo-overlay"><span>바 카운터 & 드래프트 탭</span></div>
+                        </div>
+                        <div class="photo-gallery-item">
+                            <img src="KakaoTalk_20260130_092532286_03.jpg" alt="대전맥조장 좌석 공간">
+                            <div class="photo-overlay"><span>좌석 공간</span></div>
+                        </div>
+                        <div class="photo-gallery-item">
+                            <img src="KakaoTalk_20260130_092532286_01.jpg" alt="대전맥조장 벽면 인테리어">
+                            <div class="photo-overlay"><span>벽면 인테리어</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 탭 컨텐츠: 치맥브라더스 -->
+            <div class="gallery-tab-content" id="tab-chicken">
+                <div class="store-layout">
+                    <div class="store-hero-photo">
+                        <img src="다운로드1.jpg" alt="치맥브라더스 외관">
+                        <div class="photo-overlay"><span>매장 외관</span></div>
+                    </div>
+                    <div class="store-sub-photos">
+                        <div class="photo-gallery-item">
+                            <img src="다운로드2.jpg" alt="치맥브라더스 네온사인">
+                            <div class="photo-overlay"><span>네온사인</span></div>
+                        </div>
+                        <div class="photo-gallery-item">
+                            <img src="다운로드3.jpg" alt="치맥브라더스 내부">
+                            <div class="photo-overlay"><span>매장 내부</span></div>
+                        </div>
+                        <div class="photo-gallery-item">
+                            <img src="다운로드5.jpg" alt="치맥브라더스 치맥세트">
+                            <div class="photo-overlay"><span>치맥 세트</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 탭 컨텐츠: 브루어리 공장 -->
+            <div class="gallery-tab-content" id="tab-brewery">
+                <div class="store-layout">
+                    <div class="store-hero-photo">
+                        <img src="KakaoTalk_20260130_092532286_07 (1).jpg" alt="브루어리 공장 외관">
+                        <div class="photo-overlay"><span>공장 외관</span></div>
+                    </div>
+                    <div class="store-sub-photos">
+                        <div class="photo-gallery-item">
+                            <img src="KakaoTalk_20260130_092532286_09 (1).jpg" alt="양조 설비">
+                            <div class="photo-overlay"><span>양조 설비</span></div>
+                        </div>
+                        <div class="photo-gallery-item">
+                            <img src="KakaoTalk_20260130_092532286_10 (1).jpg" alt="발효 탱크">
+                            <div class="photo-overlay"><span>발효 탱크</span></div>
+                        </div>
+                        <div class="photo-gallery-item">
+                            <img src="KakaoTalk_20260130_092532286_08 (1).jpg" alt="바이젠 제품 배너">
+                            <div class="photo-overlay"><span>바이젠 제품 소개</span></div>
+                        </div>
+                        <div class="photo-gallery-item">
+                            <img src="KakaoTalk_20260130_092532286_11 (1).jpg" alt="발효기 명판">
+                            <div class="photo-overlay"><span>10HL 발효기</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -345,5 +436,6 @@
     <script>
         TalkerSDK.initializeTalkerSDK({ code: "biz008", position: "right" });
     </script>
+<a href="https://jaiwshim-project.github.io/21-Tunnel-Business-Plan/" target="_blank" class="floating-btn-left">&#128206; 소시얼허브 터널</a>
 </body>
 </html>
