@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>바이젠 수제맥주 - 투자 제안서</title>
+    <title>케르비시아 브루잉 - 투자 제안서</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- 네비게이션 -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">WEIZEN</div>
+            <div class="logo"><img src="logo.jpg" alt="Cervisia Brewing" class="logo-img"></div>
             <ul class="nav-menu">
                 <li><a href="index.html" class="active">홈</a></li>
                 <li><a href="about.html">브랜드 소개</a></li>
@@ -40,7 +42,7 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>바이젠 수제맥주</h1>
+            <h1>케르비시아 브루잉</h1>
             <p class="hero-subtitle">K-Beer 생태계를 선도하는 프리미엄 수제맥주 브랜드</p>
             <div class="hero-stats">
                 <div class="stat-item">
@@ -63,12 +65,12 @@
     <!-- 빠른 링크 섹션 -->
     <section class="section quick-links">
         <div class="container">
-            <h2 class="section-title">바이젠의 성장 전략</h2>
+            <h2 class="section-title">케르비시아 브루잉의 성장 전략</h2>
             <div class="quick-links-grid">
                 <a href="about.html" class="quick-link-card">
                     <div class="icon">🍺</div>
                     <h3>브랜드 소개</h3>
-                    <p>바이젠의 스토리와 비전을 만나보세요</p>
+                    <p>케르비시아 브루잉 스토리와 비전을 만나보세요</p>
                 </a>
                 <a href="strategy.html" class="quick-link-card">
                     <div class="icon">🎯</div>
@@ -99,22 +101,117 @@
         </div>
     </section>
 
-    <!-- 푸터 -->
-    <footer class="footer">
+    <!-- 매장 컨셉 섹션 -->
+    <section class="section concept-showcase">
         <div class="container">
-            <p>&copy; 2026 WEIZEN Craft Beer. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#">개인정보처리방침</a>
-                <a href="#">이용약관</a>
+            <h2 class="section-title">매장 컨셉</h2>
+            <p class="concept-showcase-sub">케르비시아 브루잉이 선보이는 공간 디자인 컨셉을 확인하세요</p>
+
+            <div class="concept-tabs">
+                <button class="concept-tab active" data-concept="cs1">Concept 1</button>
+                <button class="concept-tab" data-concept="cs2">Concept 2</button>
+                <button class="concept-tab" data-concept="cs3">Concept 3</button>
+            </div>
+
+            <div class="concept-tab-panel active" id="cs1">
+                <div class="concept-showcase-img">
+                    <img src="concept1.png" alt="Cervisia Brewing Concept 1">
+                </div>
+                <div class="concept-showcase-info">
+                    <h3>Concept 1 — Industrial Passion</h3>
+                    <p>원목 바 카운터와 구리빛 브루잉 탱크, "Brewed with Passion" 네온사인이 조화를 이루는 인더스트리얼 감성의 공간. 오크 배럴과 기계적인 디테일이 브루어리의 정체성을 강하게 표현합니다.</p>
+                </div>
+            </div>
+
+            <div class="concept-tab-panel" id="cs2">
+                <div class="concept-showcase-img">
+                    <img src="concept2.png" alt="Cervisia Brewing Concept 2">
+                </div>
+                <div class="concept-showcase-info">
+                    <h3>Concept 2 — Modern Taproom</h3>
+                    <p>밝은 콘크리트 바닥과 딥 네이비 블루 벽면, 구리 조명이 만드는 세련된 현대식 탭룸. 개방적이고 소셜한 다이닝 공간으로 고객 경험을 극대화합니다.</p>
+                </div>
+            </div>
+
+            <div class="concept-tab-panel" id="cs3">
+                <div class="concept-showcase-img">
+                    <img src="concept3.png" alt="Cervisia Brewing Concept 3">
+                </div>
+                <div class="concept-showcase-info">
+                    <h3>Concept 3 — Signature Tablescape</h3>
+                    <p>케르비시아 브루잉 브랜드 아이덴티티를 담은 프리미엄 테이블웨어. 로고가 새겨진 맥주잔과 도자기 플레이트, 구리 커틀러리, 오크 트레이까지 — 한 상차림 전체가 브랜드 경험이 됩니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+        <footer class="footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+
+                    <!-- 브랜드 -->
+                    <div class="footer-brand">
+                        <img src="logo.jpg" alt="Cervisia Brewing" class="footer-logo-img">
+                        <p class="footer-tagline">K-Beer 생태계를 선도하는<br>프리미엄 수제맥주 브랜드</p>
+                        <div class="footer-badge">BREWED WITH PASSION</div>
+                    </div>
+
+                    <!-- 메뉴 -->
+                    <div class="footer-col">
+                        <h4 class="footer-col-title">페이지</h4>
+                        <ul>
+                            <li><a href="index.html">홈</a></li>
+                            <li><a href="about.html">브랜드 소개</a></li>
+                            <li><a href="strategy.html">사업 전략</a></li>
+                            <li><a href="market.html">시장 분석</a></li>
+                            <li><a href="business.html">비즈니스 모델</a></li>
+                            <li><a href="investment.html">투자 제안</a></li>
+                            <li><a href="contact.html">문의하기</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- 사업 전략 -->
+                    <div class="footer-col">
+                        <h4 class="footer-col-title">사업 전략</h4>
+                        <ul>
+                            <li><a href="strategy.html#franchise-detail">프랜차이즈 전략</a></li>
+                            <li><a href="strategy.html#ecosystem">K-Beer 생태계</a></li>
+                            <li><a href="strategy.html#benchmarking">스타벅스 벤치마킹</a></li>
+                            <li><a href="strategy.html#roadmap">실행 로드맵</a></li>
+                            <li><a href="investment.html">투자 제안서</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- 문의 -->
+                    <div class="footer-col">
+                        <h4 class="footer-col-title">문의하기</h4>
+                        <ul class="footer-contact-list">
+                            <li><span class="fc-icon">📍</span>대전광역시 옥천군</li>
+                            <li><span class="fc-icon">💼</span>투자 &amp; 사업 제휴</li>
+                            <li><span class="fc-icon">🍺</span>프랜차이즈 가맹</li>
+                        </ul>
+                        <a href="contact.html" class="footer-cta-btn">문의하기 →</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2026 Cervisia Brewing. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">이용약관</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    <script src="https://chatbot-sdk.aitalker.co.kr/talker-sdk.umd.js"></script>
-    <script>
-        TalkerSDK.initializeTalkerSDK({ code: "biz008", position: "right" });
-    </script>
+
 <a href="https://jaiwshim-project.github.io/21-Tunnel-Business-Plan/" target="_blank" class="floating-btn-left">&#128206; 소시얼허브 터널</a>
-</body>
+<div class="aitalk-overlay" id="aitalkOverlay"><iframe src="https://aitalker.co.kr/biz008"></iframe></div>
+<button class="floating-btn-right" onclick="document.getElementById('aitalkOverlay').classList.toggle('active')">&#129302; AI톡</button></body>
 </html>

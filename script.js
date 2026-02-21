@@ -333,6 +333,28 @@ document.querySelectorAll('.dropdown-menu a').forEach(link => {
     });
 });
 
+// 갤러리 탭 전환
+document.querySelectorAll('.gallery-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.gallery-tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+});
+
 // 콘솔 환영 메시지
-console.log('%c바이젠 수제맥주', 'font-size: 24px; font-weight: bold; color: #D4A574;');
+console.log('%c케르비시아 브루잉', 'font-size: 24px; font-weight: bold; color: #D4A574;');
 console.log('%c투자 제안서 웹사이트에 오신 것을 환영합니다!', 'font-size: 14px; color: #666;');
+
+// 매장 컨셉 탭 (index.html)
+document.querySelectorAll('.concept-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = tab.dataset.concept;
+        document.querySelectorAll('.concept-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.concept-tab-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const panel = document.getElementById(target);
+        if (panel) panel.classList.add('active');
+    });
+});
