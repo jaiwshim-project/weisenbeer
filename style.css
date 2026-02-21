@@ -176,10 +176,14 @@ body {
 }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--primary-color);
-    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 48px;
+    width: auto;
+    display: block;
 }
 
 .nav-menu {
@@ -4455,8 +4459,14 @@ body {
 
 .pdf-document-viewer {
     width: 100%;
-    height: 500px;
+    height: 700px;
     border: none;
+}
+
+.pdf-viewer-wrap {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
 }
 
 .document-highlights {
@@ -5199,5 +5209,762 @@ body {
         height: 45px !important;
         line-height: 45px !important;
         font-size: 1.2rem !important;
+    }
+}
+
+/* ================================================
+   LUXURY DESIGN UPGRADE — Cervisia Brewing
+   ================================================ */
+
+/* 1. Font size reduction (-2pt / ~2px via base size) */
+html {
+    font-size: 14px;
+}
+
+/* 2. Premium serif font for headings */
+h1, h2, h3, h4, h5, h6,
+.section-title, .hero h1, .page-header h1 {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    letter-spacing: 0.5px;
+}
+
+/* 3. Color variables — luxury palette */
+:root {
+    --lux-dark:       #0D1118;
+    --lux-charcoal:   #1A1F2E;
+    --lux-brown:      #2C1810;
+    --lux-gold:       #C9A96E;
+    --lux-gold-light: #E8D5B0;
+    --lux-cream:      #FAF8F5;
+    --lux-cream2:     #F0EDE8;
+    --lux-border:     rgba(201, 169, 110, 0.25);
+}
+
+/* 4. Hero — dark luxury */
+.hero {
+    background: linear-gradient(135deg, #0D1118 0%, #1A1F2E 50%, #2C1810 100%) !important;
+}
+.hero::before {
+    background:
+        radial-gradient(circle at 20% 50%, rgba(201, 169, 110, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212, 165, 116, 0.10) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 220, 150, 0.08) 0%, transparent 50%) !important;
+    animation: none !important;
+}
+.hero h1 {
+    letter-spacing: 4px;
+    text-shadow: 0 2px 20px rgba(201, 169, 110, 0.3);
+}
+.hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    letter-spacing: 1.5px;
+    opacity: 0.85;
+}
+.stat-item h3 {
+    color: var(--lux-gold);
+    font-family: 'Playfair Display', serif;
+}
+
+/* 5. CTA button — gold */
+.cta-button {
+    background: linear-gradient(135deg, #C9A96E 0%, #A87F4A 100%) !important;
+    box-shadow: 0 8px 30px rgba(201, 169, 110, 0.4) !important;
+    letter-spacing: 1.5px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+.cta-button:hover {
+    box-shadow: 0 15px 50px rgba(201, 169, 110, 0.55) !important;
+}
+.cta-button.secondary {
+    background: transparent !important;
+    border: 2px solid #C9A96E !important;
+    box-shadow: none !important;
+    color: #C9A96E !important;
+}
+.cta-button.secondary:hover {
+    background: rgba(201, 169, 110, 0.12) !important;
+}
+
+/* 6. Section title — gold gradient & refined underline */
+.section-title {
+    background: linear-gradient(135deg, #C9A96E 0%, #E8D5B0 50%, #B8905E 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    letter-spacing: 1px;
+    font-size: 2.4rem !important;
+}
+.section-title::after {
+    width: 56px !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #C9A96E, #E8D5B0, #C9A96E) !important;
+    box-shadow: none !important;
+}
+
+/* 7. Section backgrounds — alternating sophisticated */
+.section { background: var(--lux-cream) !important; }
+.quick-links { background: var(--lux-cream2) !important; }
+.about { background: var(--lux-cream) !important; }
+.about::before { display: none !important; }
+.timeline { background: var(--lux-cream2) !important; }
+.products { background: var(--lux-cream) !important; }
+.cta-section {
+    background: linear-gradient(135deg, #1A1F2E 0%, #2C1810 100%) !important;
+}
+.brand-philosophy {
+    background: linear-gradient(180deg, #1A1F2E 0%, #0D1118 100%) !important;
+}
+.brand-philosophy .section-title {
+    background: linear-gradient(135deg, #C9A96E 0%, #E8D5B0 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+.brand-philosophy h3 { color: #E8D5B0 !important; }
+.brand-philosophy p,
+.brand-philosophy li { color: rgba(250, 248, 245, 0.80) !important; }
+
+/* 8. About cards — clean gold-bordered */
+.about-card {
+    background: #FFFFFF !important;
+    border: 1px solid var(--lux-border) !important;
+    border-top: 3px solid #C9A96E !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06) !important;
+}
+.about-card:nth-child(1) { border-top-color: #C9A96E !important; }
+.about-card:nth-child(2) { border-top-color: #A87F4A !important; }
+.about-card:nth-child(3) { border-top-color: #D4A574 !important; }
+.about-card:hover {
+    box-shadow: 0 12px 40px rgba(201, 169, 110, 0.18) !important;
+    transform: translateY(-6px) !important;
+}
+.about-card::before { display: none !important; }
+.about-card .icon { color: #C9A96E; }
+
+/* 9. Quick link cards */
+.quick-link-card {
+    background: #FFFFFF !important;
+    border: 1px solid var(--lux-border) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+.quick-link-card:hover {
+    border-color: rgba(201, 169, 110, 0.55) !important;
+    box-shadow: 0 12px 40px rgba(201, 169, 110, 0.14) !important;
+}
+
+/* 10. Product cards */
+.product-card {
+    background: #FFFFFF !important;
+    border: 1px solid var(--lux-border) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+.product-card:hover {
+    border-color: rgba(201, 169, 110, 0.5) !important;
+    box-shadow: 0 12px 40px rgba(201, 169, 110, 0.14) !important;
+}
+.product-type { color: #C9A96E !important; }
+
+/* 11. Navigation active — gold */
+.nav-menu a.active {
+    background: linear-gradient(135deg, #C9A96E 0%, #A87F4A 100%) !important;
+    box-shadow: 0 4px 15px rgba(201, 169, 110, 0.4) !important;
+}
+.nav-menu a.active:hover {
+    background: linear-gradient(135deg, #D4B87E 0%, #B8905E 100%) !important;
+    box-shadow: 0 6px 20px rgba(201, 169, 110, 0.55) !important;
+}
+
+/* 12. Footer */
+.footer {
+    background: #0D1118 !important;
+    border-top: 1px solid rgba(201, 169, 110, 0.2) !important;
+}
+
+/* 13. Page header */
+.page-header {
+    background: linear-gradient(135deg, #0D1118 0%, #1A1F2E 60%, #2C1810 100%) !important;
+}
+.page-header h1 { letter-spacing: 3px; }
+
+/* 14. PDF viewer wrap refinement */
+.pdf-viewer-wrap {
+    border: 1px solid var(--lux-border);
+}
+
+/* PDF viewer — toolbar 완전 제거 */
+.pdf-document-viewer {
+    height: 800px !important;
+    display: block;
+}
+.pdf-viewer-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 브랜드 철학 카드 가독성 수정 */
+.brand-philosophy .philosophy-item {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-left: 4px solid #C9A96E !important;
+    border-radius: 12px;
+}
+.brand-philosophy .philosophy-item h3 {
+    color: #E8D5B0 !important;
+    font-family: 'Playfair Display', serif;
+}
+.brand-philosophy .philosophy-item > p {
+    color: rgba(250, 248, 245, 0.85) !important;
+    line-height: 1.9;
+}
+.brand-philosophy .philosophy-item ul li {
+    color: rgba(250, 248, 245, 0.80) !important;
+}
+.brand-philosophy .philosophy-item ul li::before {
+    color: #C9A96E !important;
+}
+
+/* ================================================
+   MONTSERRAT 폰트 전체 적용 (로고와 동일)
+   ================================================ */
+* {
+    font-family: 'Montserrat', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6, .section-title {
+    font-family: 'Montserrat', serif !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+body {
+    font-family: 'Montserrat', 'Apple SD Gothic Neo', sans-serif !important;
+}
+.hero h1 { letter-spacing: 4px; font-weight: 800; }
+.hero-subtitle { font-weight: 300; letter-spacing: 2px; }
+
+/* ================================================
+   매장 컨셉 탭 섹션
+   ================================================ */
+.concept-showcase {
+    background: #0D1118 !important;
+}
+.concept-showcase-sub {
+    text-align: center;
+    color: rgba(250,248,245,0.6);
+    margin-top: -2rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+.concept-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+}
+.concept-tab {
+    padding: 0.7rem 2.2rem;
+    border: 1px solid rgba(201,169,110,0.4);
+    background: transparent;
+    color: rgba(250,248,245,0.6);
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.concept-tab:hover {
+    border-color: #C9A96E;
+    color: #C9A96E;
+}
+.concept-tab.active {
+    background: linear-gradient(135deg, #C9A96E, #A87F4A);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(201,169,110,0.35);
+}
+.concept-tab-panel {
+    display: none;
+}
+.concept-tab-panel.active {
+    display: block;
+    animation: fadeInUp 0.4s ease;
+}
+.concept-showcase-img {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    margin-bottom: 1.8rem;
+}
+.concept-showcase-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.concept-showcase-img:hover img {
+    transform: scale(1.02);
+}
+.concept-showcase-info {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+}
+.concept-showcase-info h3 {
+    color: #E8D5B0 !important;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1.5px;
+}
+.concept-showcase-info p {
+    color: rgba(250,248,245,0.72) !important;
+    line-height: 1.85;
+    font-size: 0.95rem;
+}
+
+/* ====================================================
+   CERVISIA BREWING — 브랜드 공식 컬러 테마
+   Navy: #192340  |  Copper: #C8804A → #E0A870
+   ==================================================== */
+
+:root {
+    --cv-navy:        #192340;
+    --cv-navy-mid:    #1F2D50;
+    --cv-navy-light:  #263660;
+    --cv-copper:      #C8804A;
+    --cv-copper-mid:  #D4956A;
+    --cv-copper-light:#E8B588;
+    --cv-cream:       #FAF8F5;
+    --cv-cream2:      #F2EDE6;
+    --cv-white:       #FFFFFF;
+    --cv-text-light:  rgba(250,248,245,0.88);
+    --cv-text-muted:  rgba(250,248,245,0.55);
+}
+
+/* === 네비게이션 === */
+.navbar {
+    background: rgba(25, 35, 64, 0.97) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(200,128,74,0.2) !important;
+}
+.nav-menu a:hover { color: var(--cv-copper-light) !important; }
+.nav-menu a::after { background: var(--cv-copper) !important; }
+.nav-menu a.active {
+    background: linear-gradient(135deg, var(--cv-copper) 0%, #A86535 100%) !important;
+    box-shadow: 0 4px 16px rgba(200,128,74,0.4) !important;
+}
+.dropdown-menu {
+    background: rgba(25, 35, 64, 0.99) !important;
+    border-top: 2px solid var(--cv-copper) !important;
+}
+.dropdown-menu a:hover {
+    background: linear-gradient(90deg, rgba(200,128,74,0.15) 0%, transparent 100%) !important;
+    color: var(--cv-copper-light) !important;
+}
+
+/* === 히어로 === */
+.hero {
+    background: linear-gradient(135deg, #0E1628 0%, var(--cv-navy) 50%, #1F2D50 100%) !important;
+}
+.hero::before {
+    background:
+        radial-gradient(circle at 20% 50%, rgba(200,128,74,0.12) 0%, transparent 55%),
+        radial-gradient(circle at 80% 30%, rgba(200,128,74,0.08) 0%, transparent 50%) !important;
+    animation: none !important;
+}
+.hero h1 { color: var(--cv-cream) !important; }
+.hero-subtitle { color: var(--cv-text-light) !important; }
+.stat-item h3 { color: var(--cv-copper-light) !important; }
+.stat-item p   { color: var(--cv-text-muted) !important; }
+
+/* === 섹션 타이틀 === */
+.section-title {
+    background: linear-gradient(135deg, var(--cv-copper) 0%, var(--cv-copper-light) 60%, var(--cv-copper) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+.section-title::after {
+    background: linear-gradient(90deg, var(--cv-copper), var(--cv-copper-light), var(--cv-copper)) !important;
+}
+
+/* === CTA 버튼 === */
+.cta-button {
+    background: linear-gradient(135deg, var(--cv-copper) 0%, #A86535 100%) !important;
+    box-shadow: 0 8px 28px rgba(200,128,74,0.38) !important;
+    color: #fff !important;
+}
+.cta-button:hover {
+    box-shadow: 0 14px 44px rgba(200,128,74,0.55) !important;
+    color: #fff !important;
+}
+.cta-button.secondary {
+    background: transparent !important;
+    border: 2px solid var(--cv-copper) !important;
+    color: var(--cv-copper-light) !important;
+    box-shadow: none !important;
+}
+.cta-button.secondary:hover {
+    background: rgba(200,128,74,0.10) !important;
+}
+
+/* === 섹션 배경 — Navy / Cream 교대 === */
+.section           { background: var(--cv-cream)  !important; }
+.quick-links       { background: var(--cv-cream2) !important; }
+.about             { background: var(--cv-cream)  !important; }
+.about::before     { display: none !important; }
+.timeline          { background: var(--cv-cream2) !important; }
+.products          { background: var(--cv-cream)  !important; }
+.store-gallery-tabs{ background: var(--cv-cream2) !important; }
+
+.brand-philosophy {
+    background: linear-gradient(180deg, var(--cv-navy) 0%, #0E1628 100%) !important;
+}
+.cta-section {
+    background: linear-gradient(135deg, var(--cv-navy) 0%, #0E1628 100%) !important;
+}
+.concept-showcase {
+    background: linear-gradient(180deg, #0E1628 0%, var(--cv-navy) 100%) !important;
+}
+.page-header {
+    background: linear-gradient(135deg, #0E1628 0%, var(--cv-navy) 60%, #1F2D50 100%) !important;
+}
+
+/* === 카드들 === */
+.about-card,
+.quick-link-card,
+.product-card {
+    background: var(--cv-white) !important;
+    border: 1px solid rgba(200,128,74,0.18) !important;
+    border-top: 3px solid var(--cv-copper) !important;
+    box-shadow: 0 4px 20px rgba(25,35,64,0.08) !important;
+}
+.about-card:nth-child(1),
+.about-card:nth-child(2),
+.about-card:nth-child(3),
+.about-card:nth-child(4) {
+    border-top-color: var(--cv-copper) !important;
+}
+.about-card:hover,
+.quick-link-card:hover,
+.product-card:hover {
+    border-color: rgba(200,128,74,0.45) !important;
+    box-shadow: 0 12px 36px rgba(200,128,74,0.16) !important;
+}
+.about-card::before { display: none !important; }
+.product-type { color: var(--cv-copper) !important; }
+
+/* === 브랜드 철학 카드 === */
+.brand-philosophy .philosophy-item {
+    background: rgba(255,255,255,0.05) !important;
+    border-left: 4px solid var(--cv-copper) !important;
+}
+.brand-philosophy .section-title {
+    background: linear-gradient(135deg, var(--cv-copper) 0%, var(--cv-copper-light) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+.brand-philosophy .philosophy-item h3 { color: var(--cv-copper-light) !important; }
+.brand-philosophy .philosophy-item > p { color: var(--cv-text-light) !important; }
+.brand-philosophy .philosophy-item ul li { color: var(--cv-text-light) !important; }
+.brand-philosophy .philosophy-item ul li::before { color: var(--cv-copper) !important; }
+
+/* === 컨셉 탭 === */
+.concept-tab {
+    border-color: rgba(200,128,74,0.35) !important;
+    color: rgba(250,248,245,0.6) !important;
+}
+.concept-tab:hover {
+    border-color: var(--cv-copper) !important;
+    color: var(--cv-copper-light) !important;
+}
+.concept-tab.active {
+    background: linear-gradient(135deg, var(--cv-copper) 0%, #A86535 100%) !important;
+    box-shadow: 0 4px 16px rgba(200,128,74,0.38) !important;
+}
+
+/* === 갤러리 탭 (about.html) === */
+.gallery-tab {
+    border: 1px solid rgba(200,128,74,0.3);
+    color: var(--cv-navy);
+}
+.gallery-tab.active,
+.gallery-tab:hover {
+    background: var(--cv-copper) !important;
+    border-color: var(--cv-copper) !important;
+    color: #fff !important;
+}
+
+/* === 타임라인 === */
+.timeline-year {
+    background: linear-gradient(135deg, var(--cv-copper) 0%, #A86535 100%) !important;
+    color: #fff !important;
+}
+.timeline-item.highlight .timeline-year {
+    background: linear-gradient(135deg, var(--cv-navy) 0%, var(--cv-navy-mid) 100%) !important;
+    border: 2px solid var(--cv-copper) !important;
+}
+
+/* === 푸터 === */
+.footer {
+    background: #0E1628 !important;
+    border-top: 1px solid rgba(200,128,74,0.2) !important;
+}
+.footer p,
+.footer a { color: var(--cv-text-muted) !important; }
+.footer a:hover { color: var(--cv-copper-light) !important; }
+
+/* === 플로팅 버튼 === */
+.floating-btn-left {
+    background: linear-gradient(135deg, var(--cv-copper) 0%, #A86535 100%) !important;
+}
+.floating-btn-right {
+    background: linear-gradient(135deg, var(--cv-navy-mid) 0%, var(--cv-navy) 100%) !important;
+    border: 1px solid rgba(200,128,74,0.4) !important;
+}
+
+/* === 스크롤바 === */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cv-navy); }
+::-webkit-scrollbar-thumb { background: var(--cv-copper); border-radius: 3px; }
+
+
+/* ====================================================
+   NEW FOOTER — Cervisia Brewing
+   ==================================================== */
+.footer {
+    background: #0E1628 !important;
+    border-top: 1px solid rgba(200,128,74,0.25) !important;
+}
+
+.footer-main {
+    padding: 5rem 0 3.5rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+    gap: 3rem;
+}
+
+/* 브랜드 컬럼 */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+.footer-logo-img {
+    height: 44px;
+    width: auto;
+    opacity: 0.95;
+}
+.footer-tagline {
+    color: rgba(250,248,245,0.55) !important;
+    font-size: 0.85rem;
+    line-height: 1.75;
+    letter-spacing: 0.3px;
+}
+.footer-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(200,128,74,0.4);
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: var(--cv-copper-mid, #D4956A);
+    width: fit-content;
+}
+
+/* 링크 컬럼 */
+.footer-col-title {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 2.5px !important;
+    color: var(--cv-copper, #C8804A) !important;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(200,128,74,0.2);
+    -webkit-text-fill-color: var(--cv-copper, #C8804A) !important;
+}
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+.footer-col ul li a,
+.footer-col ul li {
+    color: rgba(250,248,245,0.55) !important;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.25s, padding-left 0.25s;
+    display: block;
+}
+.footer-col ul li a:hover {
+    color: var(--cv-copper-light, #E8B588) !important;
+    padding-left: 4px;
+}
+
+/* 문의 컬럼 */
+.footer-contact-list {
+    gap: 0.85rem !important;
+}
+.footer-contact-list li {
+    display: flex !important;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: rgba(250,248,245,0.55) !important;
+}
+.fc-icon { font-size: 1rem; }
+.footer-cta-btn {
+    display: inline-block;
+    margin-top: 1.4rem;
+    padding: 0.65rem 1.6rem;
+    background: linear-gradient(135deg, var(--cv-copper, #C8804A) 0%, #A86535 100%);
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 4px 16px rgba(200,128,74,0.3);
+}
+.footer-cta-btn:hover {
+    box-shadow: 0 8px 28px rgba(200,128,74,0.5);
+    transform: translateY(-2px);
+    color: #fff !important;
+}
+
+/* 하단 바 */
+.footer-bottom {
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(200,128,74,0.15);
+}
+.footer-bottom .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.footer-bottom p {
+    color: rgba(250,248,245,0.35) !important;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+}
+.footer-bottom-links {
+    display: flex;
+    gap: 1.5rem;
+}
+.footer-bottom-links a {
+    color: rgba(250,248,245,0.35) !important;
+    font-size: 0.78rem;
+    text-decoration: none;
+    transition: color 0.25s;
+}
+.footer-bottom-links a:hover {
+    color: var(--cv-copper-light, #E8B588) !important;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+}
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .footer-bottom .container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* ====================================================
+   FOOTER LAYOUT FIX — 좌우 전체 영역 활용
+   ==================================================== */
+
+/* 컨테이너 제약 해제 */
+.footer .container {
+    display: block !important;
+    max-width: 1440px !important;
+    padding: 0 5% !important;
+    margin: 0 auto !important;
+}
+.footer-bottom .container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    max-width: 1440px !important;
+    padding: 0 5% !important;
+    margin: 0 auto !important;
+}
+
+/* 그리드 — 균등 4열, 충분한 간격 */
+.footer-grid {
+    grid-template-columns: 1.6fr 1fr 1fr 1.2fr !important;
+    gap: 0 !important;
+    column-gap: 4rem !important;
+    width: 100% !important;
+}
+
+/* 브랜드 컬럼 우측 padding으로 자연스러운 분리 */
+.footer-brand {
+    padding-right: 2rem;
+    border-right: 1px solid rgba(200,128,74,0.12);
+}
+
+/* 링크 컬럼 좌측 padding */
+.footer-col {
+    padding-left: 1rem;
+}
+
+/* 마지막 컬럼(문의) 좌측 강조 */
+.footer-col:last-child {
+    padding-left: 2rem;
+    border-left: 1px solid rgba(200,128,74,0.12);
+}
+
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr !important;
+        column-gap: 3rem !important;
+        row-gap: 2.5rem !important;
+    }
+    .footer-brand {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid rgba(200,128,74,0.12);
+        padding-bottom: 2rem;
+    }
+    .footer-col { padding-left: 0; }
+    .footer-col:last-child {
+        border-left: none;
+        padding-left: 0;
+    }
+    .footer .container,
+    .footer-bottom .container {
+        padding: 0 6% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        row-gap: 2rem !important;
+    }
+    .footer .container,
+    .footer-bottom .container {
+        padding: 0 1.5rem !important;
     }
 }
